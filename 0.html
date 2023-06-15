@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>猜数字游戏</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>猜数字游戏</h1>
+    <p>猜一个1到100之间的数字：</p>
+    <input type="number" id="guessInput">
+    <br>
+    <button onclick="guessNumber()">猜一猜</button>
+    <p id="result"></p>
+
+    <script>
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function guessNumber() {
+            let guess = parseInt(document.getElementById('guessInput').value);
+            attempts++;
+
+            let resultElement = document.getElementById('result');
+
+            if (guess === secretNumber) {
+                resultElement.textContent = `恭喜！你猜对了，答案是${secretNumber}。你用了${attempts}次尝试。`;
+                resultElement.style.color = 'green';
+            } else if (guess < secretNumber) {
+                resultElement.textContent = '猜的数字太小了，请再试一次。';
+                resultElement.style.color = 'red';
+            } else {
+                resultElement.textContent = '猜的数字太大了，请再试一次。';
+                resultElement.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
